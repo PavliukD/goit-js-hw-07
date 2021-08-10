@@ -4,6 +4,9 @@ const renderBtnEl = document.querySelector('[data-action="render"]')
 const destroyBtnEl = document.querySelector('[data-action="destroy"]')
 const inputEl = controlsEl.querySelector("input")
 const createdElements = []
+function random() {
+    return Math.round(Math.random() * (256 - 0) + 0)
+} 
 
 
 
@@ -11,18 +14,15 @@ renderBtnEl.addEventListener('click', onCreateElements)
 destroyBtnEl.addEventListener('click', onDestroyElements)
 
 function onCreateElements(event) {
+onDestroyElements()
     for (let i = 0; i < inputEl.value; i += 1){
         const widthAndHeigth = 30 + 10 * i
-        const red = Math.round(Math.random() * (256 - 0) + 0)
-        const green = Math.round(Math.random() * (256 - 0) + 0)
-        const blue = Math.round(Math.random() * (256 - 0) + 0)
         const newElement = document.createElement('div')
         newElement.style.display = "block"
         newElement.style.width = `${widthAndHeigth}px`
-        newElement.style.heigth = `${widthAndHeigth}px`
-        newElement.style.backgroundColor = `rgb(${red},${green},${blue})`
+        newElement.style.height = `${widthAndHeigth}px`
+        newElement.style.backgroundColor = `rgb(${random()}, ${random()}, ${random()})`
         createdElements.push(newElement)
-        console.dir(newElement)
     }
 
 
@@ -30,9 +30,12 @@ function onCreateElements(event) {
 
 }
 
-function onDestroyElements(event){
+function onDestroyElements(){
     const elForDestroy = boxesEl.querySelectorAll("div")
     elForDestroy.forEach(element => boxesEl.removeChild(boxesEl.firstChild))
+    createdElements.splice(0, createdElements.length)
 }
+
+
 
 
