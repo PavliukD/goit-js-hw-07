@@ -11,7 +11,8 @@ function validationCheck(event) {
         inputEl.classList.remove("invalid")
         return inputEl.classList.add("valid")
     }
-
+    
+    inputEl.classList.remove("valid")
     inputEl.classList.add("invalid")
 }
 
